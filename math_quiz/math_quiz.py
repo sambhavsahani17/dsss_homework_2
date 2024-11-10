@@ -13,6 +13,7 @@ def random_number_generator(min: int, max: int) -> int:
     
     Raises:
         TypeError: If 'min' or 'max' are not integers.
+        ValueError: If 'min' > 'max'.
 
     Examples:
         >>> random_number_generator(1, 4)
@@ -24,17 +25,9 @@ def random_number_generator(min: int, max: int) -> int:
         raise TypeError(f"Argument 'min' should be of type int, but got type {type(min).__name__}.")
     if isinstance(max, int) == False:
         raise TypeError(f"Argument 'max' should be of type int, but got type {type(max).__name__}.")
-    try: 
-        return random.randint(min, max)
-    except:
-        # if both min and max are integers, the only way the function fails is if min > max
-        # hence, swapping the variables to fix the error
-        print("\nWARNING!! min should be smaller than max")
-        print("Swapping the variables")
-        min = min + max
-        max = min - max
-        min = min - max
-        return random.randint(min, max)
+    if min > max:
+        raise ValueError(f"Argument 'min' should be <= argument 'max'.")
+    return random.randint(min, max)
 
 def random_operation_generator() -> str:
     """
