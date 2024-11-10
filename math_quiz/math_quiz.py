@@ -47,7 +47,7 @@ def random_operation_generator() -> str:
     return random.choice(['+', '-', '*'])
 
 
-def calculate(first_number: int, second_number: int, operation: str) -> tuple[str, int]:
+def question_maker(first_number: int, second_number: int, operation: str) -> tuple[str, int]:
     """
     This function, based on the given numbers and opeartion, returns a formatted question which can be displayed to the user for math quiz.
     Along with the formatted question, it also returns the correct answer.
@@ -62,11 +62,11 @@ def calculate(first_number: int, second_number: int, operation: str) -> tuple[st
         and the second element contains the right answer of the quiz.
 
     Examples:
-        >>> calculate(1, 2, "+")
+        >>> question_maker(1, 2, "+")
         ('1 + 2', 3)
-        >>> calculate(1, 2, "-")
+        >>> question_maker(1, 2, "-")
         ('1 - 2', -1)
-        >>> calculate(3, 2, "*")
+        >>> question_maker(3, 2, "*")
         ('3 * 2', 6)
     """
     PROBLEM = f"{first_number} {operation} {second_number}"
@@ -88,7 +88,7 @@ def math_quiz() -> None:
     for _ in range(total_questions):
         first_number = random_number_generator(1, 5); second_number = random_number_generator(1, 5); operation = random_operation_generator()
 
-        PROBLEM, ANSWER = calculate(first_number, second_number, operation)
+        PROBLEM, ANSWER = question_maker(first_number, second_number, operation)
 
         # in case of ValueError, allowing the user to retry up to max_error times assuming a typo was made
         error_count = 0
